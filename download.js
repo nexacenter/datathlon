@@ -91,6 +91,7 @@ exports.getFromURL = function (url, cb) {
     });
     request.on('error', function(e) {
         console.log("Got error: " + e.message + " for " + url);
+        fs.writeFileSync("error.log", e.message + " for " + url);
     });
 };
 
