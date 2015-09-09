@@ -79,6 +79,9 @@ exports.getFromURL = function (url, cb) {
     var data = {};
     data.payload = "";
 
+    if (url.substring(0, 4).toUpperCase() !== "HTTP")
+        url = "http://"+url;
+
     var protocol = (url.substring(0, 6).toUpperCase() == 'HTTPS:' ? https : http);
     var request = protocol.get(url, function(res) {
         res.on('data', function(chunk) {
@@ -91,6 +94,9 @@ exports.getFromURL = function (url, cb) {
     });
     request.on('error', function(e) {
         console.log("Got error: " + e.message + " for " + url);
+        fs.appendFileSync("error.log", e.message + " for " + url + "\n");
+        data.status = e.message;
+        cb(data);
     });
 };
 
