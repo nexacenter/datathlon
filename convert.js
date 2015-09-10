@@ -1,6 +1,6 @@
 /*
 * 
-* A simple script to convert XML files located in a directory to JSON files.  
+* A simple script to create (or print) a JSON file from an XML file
 *
 */
 
@@ -18,11 +18,8 @@ module.exports = (function () {
             if (err) throw err;
             var outputFilename = outputDir + file.split(".xml")[0] + '.json';
             fs.writeFile(outputFilename, JSON.stringify(result, null, 4), function (err) {
-                if (err) {
-                    console.log(err);
-                } else {
-                    console.log("JSON saved to " + outputFilename);
-                }
+                if (err) throw err
+                console.log("JSON saved to " + outputFilename);
             });
         });
     }
