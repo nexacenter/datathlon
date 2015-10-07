@@ -28,8 +28,8 @@ module.exports = (function () {
         fs.readFile(file, 'utf-8', function (err, xml) {
             if (err) console.log(err)
             parser.parseString(xml, function (err, result) {
-                if (err) throw err;
-                callBack(result);
+                if (err) console.error(err);
+                else callBack(result);
             });
         });
     }
