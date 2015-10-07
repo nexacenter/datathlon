@@ -83,18 +83,22 @@ exports.getFromURL = function (url, cb) {
         url = "http://"+url;
 
     var protocol = (url.substring(0, 6).toUpperCase() == 'HTTPS:' ? https : http);
+
+    var start = new Date();
     var request = protocol.get(url, function(res) {
         res.on('data', function(chunk) {
             data.payload += chunk;
         });
         res.on('end', function() {
+            var end = new Date() - start;
+            fs.appendFileSync("GET.csv", "GET," + url + "," + res.statusCode + "," + data.payload.length + "," + end + "\n");
             data.status = res.statusCode;
             cb(data);
         })
     });
     request.on('error', function(e) {
-        //console.log("Got error: " + e.message + " for " + url);
-        fs.appendFileSync("error.log", e.message + " for " + url + "\n");
+        var end = new Date() - start;
+        fs.appendFileSync("GET.csv", "ERROR," + url + "," + e.message + "," + data.payload.length + "," + end + "\n");
         data.status = e.message;
         cb(data);
     });
