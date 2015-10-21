@@ -27,30 +27,22 @@ public class DefaultJSONTriplifier {
         this.subject = subject;
     }
 
-    /**
-     * Create a general list of Jena Statements from a JSON
-     * @param inputJSON Input file
-     * @param dataModel Ontology Mapper
-     *
-     * @return A list of Jena Statements
-     *
-     */
-    public List<Statement> triplifyJSON(String inputJSON, String dataModel) {
+    public List<Statement> triplifyJSON() {
 
         List<Statement> results = new ArrayList<>();
         ObjectMapper inputJSONMapper = new ObjectMapper();
         ObjectMapper dataModelMapper = new ObjectMapper();
 
         try {
-            JsonNode rootInputJSON = inputJSONMapper.readValue(inputJSON, JsonNode.class);
+            JsonNode rootInputJSON = inputJSONMapper.readValue(inputData, JsonNode.class);
             JsonNode rootDataModel = dataModelMapper.readValue(dataModel, JsonNode.class);
             JsonNode mapperDataModel = rootDataModel.get(1).get("propertiesToMap").get(0);
 
             for (JsonNode node : rootInputJSON) {
+                // Define a subject from the JSON file
                 String subjectValue = getValue(cleanString(subject), node);
                 Resource subjectURI = ResourceFactory.createResource(subjectValue);
-                createSimpleLiterals(subjectURI, node, mapperDataModel);
-
+                results.addAll(createSimpleLiterals(subjectURI, node, mapperDataModel));
             }
         } catch (JsonParseException e) {
             e.printStackTrace();
