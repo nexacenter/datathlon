@@ -6,6 +6,7 @@
 
     <groupId>triplifier</groupId>
     <artifactId>triplifier</artifactId>
+    <name>RDF Triplifier</name>
     <version>0.1</version>
 
     <build>
@@ -18,9 +19,18 @@
                     <archive>
                         <manifest>
                             <addClasspath>true</addClasspath>
-                            <!-- <mainClass></mainClass>-->
+                            <mainClass>it.polito.nexa.TriplesGenerator</mainClass>
                         </manifest>
                     </archive>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.3</version>
+                <configuration>
+                    <source>1.7</source>
+                    <target>1.7</target>
                 </configuration>
             </plugin>
         </plugins>
