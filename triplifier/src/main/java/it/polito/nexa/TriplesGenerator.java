@@ -31,7 +31,9 @@ public class TriplesGenerator {
         DefaultJSONTriplifier djt = new DefaultJSONTriplifier(data, model, uriReference);
         baseModel.add(djt.triplifyJSON());
 
-        publishRDF("output/rdf.nt", baseModel);
+        String nameFile = dataPath.split("/")[dataPath.split("/").length-1].split(".json")[0];
+
+        publishRDF("output/" + nameFile + ".nt", baseModel);
     }
 
     private static String readFile(String source){
