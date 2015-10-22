@@ -16,7 +16,7 @@ import java.util.Map;
 public class TriplesGenerator {
 
     public static void main(String[] args) throws IOException {
-        if (args.length != 4) {
+        if (args.length != 3) {
             System.err.println("Number of arguments is wrong!");
             System.exit(1);
         }
@@ -25,11 +25,10 @@ public class TriplesGenerator {
         String dataModel = args[1];
         String data = readFile(dataPath);
         String model = readFile(dataModel);
-        String baseURI = args[2];
-        String uriReference = args[3];
+        String uriReference = args[2];
 
         Model baseModel = createBaseModel();
-        DefaultJSONTriplifier djt = new DefaultJSONTriplifier(data, model, baseURI, uriReference);
+        DefaultJSONTriplifier djt = new DefaultJSONTriplifier(data, model, uriReference);
         baseModel.add(djt.triplifyJSON());
 
         publishRDF("output/rdf.nt", baseModel);

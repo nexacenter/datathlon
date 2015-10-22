@@ -17,13 +17,11 @@ public class DefaultJSONTriplifier {
 
     private String inputData;
     private String dataModel;
-    private String baseURI;
     private String subject;
 
-    public DefaultJSONTriplifier(String inputData, String dataModel, String baseURI, String subject) {
+    public DefaultJSONTriplifier(String inputData, String dataModel, String subject) {
         this.inputData = inputData;
         this.dataModel = dataModel;
-        this.baseURI = baseURI;
         this.subject = subject;
     }
 
