@@ -67,7 +67,7 @@ public class DefaultJSONTriplifier {
             if (!propertyMap.equals("") && !propertyMap.equals("notSet")
                     && !dataType.equals("") && dataType.equals("entity")) {
                 Property property =  ResourceFactory.createProperty(getValue(entry.getKey().toString(), dataModelMapper));
-                Resource object = ResourceFactory.createResource(entry.getValue().toString());
+                Resource object = ResourceFactory.createResource(entry.getValue().toString().replaceAll("\"", ""));
                 Statement st = ResourceFactory.createStatement(subject, property, object);
                 results.add(st);
             }
@@ -84,15 +84,15 @@ public class DefaultJSONTriplifier {
             Map.Entry<String, JsonNode> entry = (Map.Entry<String, JsonNode>) nodeIterator.next();
             String dataType = getValue(entry.getKey().toString(), typeModelMapper);
             String propertyMap = getValue(entry.getKey().toString(), dataModelMapper);
-            if(!propertyMap.equals("") && !propertyMap.equals("notSet")) {
+            if(!propertyMap.equals("") && !propertyMap.equals("notSet") && !dataType.equals("entity")) {
                 Property property =  ResourceFactory.createProperty(getValue(entry.getKey().toString(), dataModelMapper));
                 // TODO should be improved for scalability reasons
-                if (!dataType.equals("") && dataType.equals("date")) {
+                if (!dataType.equals("") && dataType.equals("date") && !dataType.equals("entity")) {
                     RDFDatatype dateType = XSDDateType.XSDdate;
                     Literal dateLiteral = ResourceFactory.createTypedLiteral(entry.getValue().toString().replace("\"", ""), dateType);
                     Statement dateStatement = ResourceFactory.createStatement(subject, property, dateLiteral);
                     results.add(dateStatement);
-                } else if (!dataType.equals("") && dataType.equals("int")) {
+                } else if (!dataType.equals("") && dataType.equals("int") && !dataType.equals("entity")) {
                     RDFDatatype intType = XSDDatatype.XSDint;
                     Literal intLiteral = ResourceFactory.createTypedLiteral(entry.getValue().toString().replace("\"", ""), intType);
                     Statement intStatement = ResourceFactory.createStatement(subject, property, intLiteral);
