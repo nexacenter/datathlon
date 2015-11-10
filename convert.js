@@ -28,10 +28,21 @@ module.exports = (function () {
         fs.readFile(file, 'utf-8', function (err, xml) {
             if (err) console.log(err)
             parser.parseString(xml, function (err, result) {
-                if (err);
-                else callBack(file,result);
+                if (err) callBack("Error!");
+                else callBack({"result": result, "file": file});
             });
         });
     }
+
+    this.convertToJSONSync = function (file) {
+        fs.readFile(file, 'utf-8', function (err, xml) {
+            if (err) console.log(err)
+            parser.parseString(xml, function (err, result) {
+                if (err);
+                else return {"result": result, "file": file};
+            });
+        });
+    }
+
     return this;
 })();
