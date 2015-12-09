@@ -97,7 +97,13 @@ public class DefaultJSONTriplifier {
                     Literal intLiteral = ResourceFactory.createTypedLiteral(entry.getValue().toString().replace("\"", ""), intType);
                     Statement intStatement = ResourceFactory.createStatement(subject, property, intLiteral);
                     results.add(intStatement);
-                } else {
+                } else if (!dataType.equals("") && dataType.equals("float") && !dataType.equals("entity")) {
+                    RDFDatatype floatType = XSDDatatype.XSDfloat;
+                    Literal floatLiteral = ResourceFactory.createTypedLiteral(entry.getValue().toString().replace("\"", ""), floatType);
+                    Statement floatStatement = ResourceFactory.createStatement(subject, property, floatLiteral);
+                    results.add(floatStatement);
+                }
+                else {
                     Literal literal = ResourceFactory.createPlainLiteral(entry.getValue().toString().replace("\"", ""));
                     Statement basicStatement = ResourceFactory.createStatement(subject, property, literal);
                     results.add(basicStatement);
