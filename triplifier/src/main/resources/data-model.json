@@ -1,0 +1,32 @@
+[
+    {
+        "dataType" : [
+           {
+               "dataInizio": "date",
+               "dataFine": "date",
+               "comune": "entity",
+               "organizzazione": "entity",
+               "categoria": "entity"
+           }
+        ]
+    },
+    {
+        "propertiesToMap": [
+            {
+                "id": "notSet",
+                "comune": "http://dbpedia.org/ontology/city",
+                "urlComune": "http://mapo.nexacenter.org/id/eventi/hasUrlComune",
+                "categoria": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+                "dataInizio": "https://schema.org/startDate",
+                "dataFine": "https://schema.org/endDate",
+                "titolo": "http://www.w3.org/2000/01/rdf-schema#label",
+                "descrizione": "http://purl.org/dc/terms/description",
+                "organizzazione": "https://schema.org/organizer",
+                "foto": "http://xmlns.com/foaf/0.1/depiction",
+                "evento": "notSet",
+                "eventoPeriodo": "http://www.w3.org/2000/01/rdf-schema#comment",
+                "eventoDescrizione": "http://www.w3.org/2000/01/rdf-schema#comment"
+            }
+        ]
+    }
+]

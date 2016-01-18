@@ -78,6 +78,6 @@ public class TriplesGenerator {
         OutputStream outTurtle = new FileOutputStream(new File(filePath));
         RDFDataMgr.write(outTurtle, model, RDFFormat.NTRIPLES);
         System.out.println("RDF printed!");
-        System.out.println("Check the output! directory");
+        System.out.println("Check the output: " + filePath);
     }
 }
