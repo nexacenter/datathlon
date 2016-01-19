@@ -1,0 +1,28 @@
+{
+  "name": "datathlon",
+  "version": "0.0.1",
+  "description": "A library to clean, transform, and enrich (semantically) raw data",
+  "main": "cleaner.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "mocha test/*.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/nexacenter/datathlon.git"
+  },
+  "keywords": [
+    "data",
+    "curation",
+    "data",
+    "cleaning",
+    "enrichment"
+  ],
+  "author": "Giuseppe Futia, Alessio Melandri",
+  "license": "BSD-2-Clause",
+  "bugs": {
+    "url": "https://github.com/nexacenter/datathlon/issues"
+  }
+}
