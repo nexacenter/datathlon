@@ -51,6 +51,8 @@ module.exports = (function() {
     return this;
 })();
 
+// Clean strings
+
 var removeHTMLTags = function (string) {
     string = string.replace(/(<([^>]+)>)/g, "");
     return string;
