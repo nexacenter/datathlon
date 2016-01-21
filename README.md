@@ -1,2 +1,2 @@
 # datathlon
-A library to clean, transform, and enrich (semantically) raw data
+A simple tool to clean, transform, and enrich (semantically) raw data
