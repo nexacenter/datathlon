@@ -1,6 +1,6 @@
 module.exports = (function() {
 
-    /** 
+    /**
      * Check bad characters in a string
      *
      * @param   {String}       string               String to check
@@ -19,8 +19,8 @@ module.exports = (function() {
         // Match everything at the beginning except a-z, A-Z, 0-9, _
         var badCharBeginningReg = /^\W/;
 
-        // Match everything at the end except a-z, A-Z, 0-9, _, ., !, ?, €, %
-        var badCharEndReg = /[^\w\.?!€%]$/;
+        // Match everything at the end except a-z, A-Z, 0-9, _, ., !, ?, €, %, ), ]
+        var badCharEndReg = /[^\w\.?!€%\)\]]$/;
 
         // Match (), [], @
         var goodCharsReg = /^(\(|\[|@).*/

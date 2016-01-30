@@ -1,7 +1,7 @@
 /**
  *
  * Datathlon test
- * 
+ *
  */
 
 var assert = require("assert");
@@ -29,6 +29,7 @@ describe("String cleaning test", function () {
             assert.deepEqual("abcd", cleanString(badChars[i] + "abcd"));
         });
     }
+
     it("Invalid string: input <![CDATA[abcd]]> should return abcd", function () {
         assert.deepEqual("abcd", cleanString("<![CDATA[abcd]]>"));
     });
@@ -37,6 +38,12 @@ describe("String cleaning test", function () {
     });
     it("Invalid string: input <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" style=\"width:263px\"><tbody><tr><td style=\"height:104px; width:263px\">abcd should return abcd", function () {
         assert.deepEqual("abcd", cleanString("<table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" style=\"width:263px\"><tbody><tr><td style=\"height:104px; width:263px\">abcd"));
+    });
+    it("Valid string: input efg (abcd) should return efg (abcd)", function () {
+        assert.deepEqual("efg (abcd)", cleanString("efg (abcd)"));
+    });
+    it("Valid string: input efg abcd fgh. should return efg abcd fgh.", function () {
+        assert.deepEqual("efg abcd fgh.", cleanString("efg abcd fgh."));
     });
 });
 
