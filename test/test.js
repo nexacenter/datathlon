@@ -56,4 +56,8 @@ describe("Pipeline cleaning test", function () {
         var cleanedString = cleanString("*   abcd  § #");
         assert.deepEqual("abcd", cleanedString);
     });
+    it("Invalid string: input \\\"WORK 2000 ABC \\\" should return WORK 2000 ABC", function () {
+        var cleanedString = cleanString("\"WORK 2000 ABC \"");
+        assert.deepEqual("WORK 2000 ABC", cleanedString);
+    });
 });

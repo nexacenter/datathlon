@@ -69,6 +69,6 @@ var removeBadCharAtTheBeginning = function (string) {
 }
 
 var removeBadCharAtTheEnd = function (string) {
-	string = string.replace(string[string.length-1], "");
-	return string;
+	  string = string.slice(0, -1);
+	  return string;
 }
