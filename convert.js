@@ -1,5 +1,5 @@
 /*
-* 
+*
 * A simple script to create (or print) a JSON file from an XML file
 *
 */
@@ -27,10 +27,18 @@ module.exports = (function () {
     this.convertToJSON = function (file, callBack) {
         fs.readFile(file, 'utf-8', function (err, xml) {
             if (err) console.log(err)
-            parser.parseString(xml, function (err, result) {
-                if (err) callBack("Error!");
-                else callBack({"result": result, "file": file});
-            });
+            try {
+              parser.parseString(xml, function (err, result) {
+                  if (err) callBack("Error!");
+                  else callBack({"result": result, "file": file});
+              });
+            }
+            catch (err) {
+              fs.appendFile('xml-with-bad-format.txt', file, function (err) {
+                console.log("Finded an XML with a bad format");
+                console.log(file);
+              });
+            }
         });
     }
 
