@@ -34,9 +34,11 @@ module.exports = (function () {
               });
             }
             catch (err) {
-              fs.appendFile('xml-with-bad-format.txt', file, function (err) {
+              fs.appendFile('xml-with-bad-format.txt', file + "\n", function (err) {
+                console.log(err);
                 console.log("Finded an XML with a bad format");
                 console.log(file);
+                callBack("Error!");
               });
             }
         });
