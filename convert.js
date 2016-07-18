@@ -27,15 +27,10 @@ module.exports = (function () {
     this.convertToJSON = function (file, callBack) {
         fs.readFile(file, 'utf-8', function (err, xml) {
             if (err) console.log(err)
-            try {
-              parser.parseString(xml, function (err, result) {
-                  if (err) callBack("Error!");
-                  else callBack({"result": result, "file": file});
-              });
-            }
-            catch (err) {
-                callBack("Error!");
-            }
+            parser.parseString(xml, function (err, result) {
+              if (err) callBack("Error!");
+              else callBack({"result": result, "file": file});
+            });
         });
     }
 
