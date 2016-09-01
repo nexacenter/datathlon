@@ -28,7 +28,7 @@ module.exports = (function () {
         fs.readFile(file, 'utf-8', function (err, xml) {
             if (err) console.log(err)
             parser.parseString(xml, function (err, result) {
-              if (err) callBack("Error!");
+              if (err) callBack({"file": file});
               else callBack({"result": result, "file": file});
             });
         });
